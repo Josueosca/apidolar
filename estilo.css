@@ -1,0 +1,341 @@
+   /* (estilos idénticos al anterior, añadimos un indicador de auto-actualización)  */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 10% 30%, #0b1a3a, #0a0f1f 90%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .glass-card {
+            background: rgba(18, 25, 45, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            border-radius: 2.5rem;
+            box-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+            width: 100%;
+            max-width: 520px;
+            padding: 2.2rem 2rem 2.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .badge-venezuela {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .badge-venezuela span {
+            background: #1f8efa20;
+            border: 1px solid #1f8efa50;
+            border-radius: 60px;
+            padding: 0.4rem 1.2rem 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: #b2d9ff;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .badge-venezuela i {
+            color: #ffd966;
+            font-size: 1rem;
+        }
+
+        .title-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 1.2rem;
+        }
+
+        .title-section h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ffffff 0%, #bfd9ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .title-section .small-note {
+            color: #90a9c9;
+            font-size: 0.8rem;
+            font-weight: 400;
+            background: #1f2a44;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            border: 1px solid #314b6b;
+        }
+
+        .tasa-en-vivo {
+            background: linear-gradient(145deg, #111c31, #0b1424);
+            border-radius: 2rem;
+            padding: 1.8rem 1.5rem;
+            margin: 1.2rem 0 2rem 0;
+            border: 1px solid #2b4060;
+            box-shadow: inset 0 2px 4px #00000055, 0 10px 20px -5px #03060c;
+        }
+
+        .label-live {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #aac8ff;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .label-live i {
+            font-size: 0.9rem;
+            color: #31f08e;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; text-shadow: 0 0 5px #00ffaa; }
+            100% { opacity: 0.6; }
+        }
+
+        .dolar-principal {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .simbolo {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #94b5ef;
+        }
+
+        .valor-grande {
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .valor-grande small {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #8ba9db;
+            margin-left: 0.2rem;
+        }
+
+        .fecha-actual {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #9fb1d3;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #2e3f60;
+        }
+
+        .fecha-actual i {
+            color: #5f8dee;
+        }
+
+        /* Indicador de auto-actualización */
+        .auto-refresh-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.8rem;
+            font-size: 0.75rem;
+            color: #5f8db0;
+            background: #0a1929;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            border: 1px solid #2b5080;
+        }
+
+        .auto-refresh-indicator i {
+            color: #46d646;
+            font-size: 0.6rem;
+            margin-right: 0.3rem;
+        }
+
+        .timer-badge {
+            background: #15355e;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #b7dcff;
+        }
+
+        .boton-actualizar {
+            background: transparent;
+            border: 1.5px solid #3670b3;
+            color: #d4e6ff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.6rem 1.5rem;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 1.2rem;
+        }
+
+        .boton-actualizar:hover {
+            background: #1f4980;
+            border-color: #60a0ff;
+            color: white;
+            box-shadow: 0 0 15px #1f6dc0;
+        }
+
+        .calculadora-section {
+            margin-top: 2.5rem;
+            background: #0f1a2d;
+            border-radius: 2rem;
+            padding: 1.5rem 1.3rem;
+            border: 1px solid #2b4a70;
+        }
+
+        .calculadora-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #c1d9ff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .calculadora-header i {
+            background: #2b5b9e;
+            padding: 0.5rem;
+            border-radius: 50%;
+            font-size: 1rem;
+        }
+
+        .conv-input-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .input-wrapper {
+            flex: 2;
+            min-width: 170px;
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8ba9db;
+            font-size: 1rem;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            background: #061020;
+            border: 1px solid #274568;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding: 1rem 1rem 1rem 3rem;
+            border-radius: 40px;
+            outline: none;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #5f9eff;
+            box-shadow: 0 0 0 3px #1f498070;
+        }
+
+        .currency-symbol {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #e0efff;
+            background: #1e3452;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #355f8f;
+        }
+
+        .swap-icon {
+            color: #457bca;
+            font-size: 1.4rem;
+            margin: 0 0.2rem;
+            cursor: default;
+        }
+
+        .resultado-bs {
+            background: #0e1a28;
+            border-radius: 50px;
+            padding: 0.8rem 1.8rem;
+            margin-top: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #24548b;
+        }
+
+        .resultado-bs span:first-child {
+            color: #adc8ff;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .monto-final {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footnote {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.2rem;
+            color: #5675a3;
+            font-size: 0.8rem;
+        }
+
+        .footnote a {
+            color: #89b1ff;
+            text-decoration: none;
+            border-bottom: 1px dotted;
+        }
+
+        @media (max-width: 450px) {
+            .glass-card { padding: 1.5rem; }
+            .valor-grande { font-size: 2.8rem; }
+            .conv-input-group { flex-direction: column; align-items: stretch; }
+            .swap-icon { transform: rotate(90deg); margin: 0.3rem 0; }
+        }
