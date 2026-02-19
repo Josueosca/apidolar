@@ -1,4 +1,4 @@
-/* ===== ESTILOS BASE (para móviles primero) ===== */
+/* ===== ESTILOS BASE - AHORA CON ALTURA COMPLETA Y FLEXIBLE ===== */
 * {
     margin: 0;
     padding: 0;
@@ -7,25 +7,58 @@
 }
 
 body {
-    min-height: 100vh;
+    min-height: 100vh; /* Mínimo el alto de la pantalla */
+    /* Usamos un fondo más simple y que cubra toda el área sin problemas */
+    background: #0a0f1f; /* Color de fondo sólido como base */
     background: radial-gradient(circle at 10% 30%, #0b1a3a, #0a0f1f 90%);
     display: flex;
-    align-items: center;
+    align-items: center; /* Centrado vertical por defecto */
     justify-content: center;
-    padding: 0.8rem; /* Reducido para móviles */
+    padding: 0; /* Eliminamos el padding del body, se lo pasaremos a la tarjeta */
 }
 
 .glass-card {
-    background: rgba(18, 25, 45, 0.85);
+    background: rgba(18, 25, 45, 0.9); /* Un poco más opaco para mejor legibilidad */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(74, 144, 226, 0.2);
-    border-radius: 2rem; /* Ligeramente más pequeño */
-    box-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    border-radius: 0; /* Sin bordes redondeados para que ocupe toda la pantalla en APK */
+    box-shadow: none; /* Sombra eliminada para un look más de "app" */
     width: 100%;
-    max-width: 480px; /* Limitado para móviles grandes */
-    padding: 1.5rem 1.2rem; /* Padding reducido */
+    max-width: 100%; /* Ocupa todo el ancho disponible */
+    /* IMPORTANTE: Usamos min-height para que la tarjeta ocupe al menos toda la pantalla */
+    min-height: 100vh;
+    /* Usamos flexbox para que el contenido se distribuya verticalmente */
+    display: flex;
+    flex-direction: column;
+    /* Añadimos padding para que el contenido no quede pegado a los bordes */
+    padding: 1.5rem 1.2rem;
     transition: transform 0.2s ease;
+}
+
+/* Para pantallas más grandes (tablets/escritorio), podemos volver al estilo de tarjeta centrada si quieres */
+@media screen and (min-width: 768px) {
+    body {
+        padding: 1.5rem; /* Añadimos padding al body para separar la tarjeta del borde */
+    }
+    .glass-card {
+        max-width: 550px; /* Ancho máximo para que no se estire demasiado */
+        min-height: auto; /* La altura ya no es mínima, se ajusta al contenido */
+        border-radius: 2rem; /* Recuperamos los bordes redondeados */
+        box-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+        padding: 2.5rem 2.2rem;
+        margin: 0 auto; /* Centrado */
+    }
+}
+
+/* Ajuste para pantallas muy grandes (escritorio) */
+@media screen and (min-width: 1200px) {
+    body {
+        padding: 2rem;
+    }
+    .glass-card {
+        max-width: 600px; /* Un poco más grande */
+    }
 }
 
 /* ===== BADGE VENEZUELA ===== */
@@ -33,15 +66,16 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1.2rem; /* Reducido */
+    margin-bottom: 1.2rem;
+    flex-shrink: 0; /* Evita que se encoja si el contenido es muy grande */
 }
 
 .badge-venezuela span {
     background: #1f8efa20;
     border: 1px solid #1f8efa50;
     border-radius: 60px;
-    padding: 0.3rem 1rem 0.3rem 0.8rem; /* Más compacto */
-    font-size: 0.75rem; /* Texto más pequeño */
+    padding: 0.3rem 1rem 0.3rem 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.3px;
     color: #b2d9ff;
@@ -52,7 +86,7 @@ body {
 
 .badge-venezuela i {
     color: #ffd966;
-    font-size: 0.9rem; /* Icono más pequeño */
+    font-size: 0.9rem;
 }
 
 /* ===== SECCIÓN TÍTULO ===== */
@@ -61,10 +95,11 @@ body {
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 1rem;
+    flex-shrink: 0;
 }
 
 .title-section h1 {
-    font-size: 1.5rem; /* Reducido para móviles */
+    font-size: 1.5rem;
     font-weight: 600;
     background: linear-gradient(135deg, #ffffff 0%, #bfd9ff 100%);
     -webkit-background-clip: text;
@@ -75,23 +110,24 @@ body {
 
 .title-section .small-note {
     color: #90a9c9;
-    font-size: 0.7rem; /* Más pequeño */
+    font-size: 0.7rem;
     font-weight: 400;
     background: #1f2a44;
     padding: 0.2rem 0.7rem;
     border-radius: 30px;
     border: 1px solid #314b6b;
-    white-space: nowrap; /* Evita que se rompa */
+    white-space: nowrap;
 }
 
 /* ===== TASA EN VIVO ===== */
 .tasa-en-vivo {
     background: linear-gradient(145deg, #111c31, #0b1424);
-    border-radius: 1.5rem; /* Bordes más pequeños */
-    padding: 1.2rem 1rem; /* Padding reducido */
+    border-radius: 1.5rem;
+    padding: 1.2rem 1rem;
     margin: 1rem 0 1.5rem 0;
     border: 1px solid #2b4060;
     box-shadow: inset 0 2px 4px #00000055, 0 10px 20px -5px #03060c;
+    flex-shrink: 0; /* No se encoge */
 }
 
 .label-live {
@@ -100,11 +136,11 @@ body {
     gap: 0.4rem;
     color: #aac8ff;
     font-weight: 500;
-    font-size: 0.75rem; /* Texto más pequeño */
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.8rem;
-    flex-wrap: wrap; /* Por si no cabe */
+    flex-wrap: wrap;
 }
 
 .label-live i {
@@ -137,18 +173,18 @@ body {
 }
 
 .simbolo {
-    font-size: 1.5rem; /* Reducido */
+    font-size: 1.5rem;
     font-weight: 500;
     color: #94b5ef;
 }
 
 .valor-grande {
-    font-size: 2.8rem; /* Reducido para móviles */
+    font-size: 2.8rem;
     font-weight: 700;
     color: white;
     letter-spacing: 1px;
     line-height: 1;
-    word-break: break-word; /* Evita desbordes */
+    word-break: break-word;
 }
 
 .valor-grande small {
@@ -163,7 +199,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     color: #9fb1d3;
-    font-size: 0.75rem; /* Texto más pequeño */
+    font-size: 0.75rem;
     margin-top: 1rem;
     padding-top: 0.8rem;
     border-top: 1px dashed #2e3f60;
@@ -181,7 +217,7 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-top: 0.8rem;
-    font-size: 0.7rem; /* Texto más pequeño */
+    font-size: 0.7rem;
     color: #5f8db0;
     background: #0a1929;
     padding: 0.3rem 0.8rem;
@@ -189,6 +225,7 @@ body {
     border: 1px solid #2b5080;
     flex-wrap: wrap;
     gap: 0.3rem;
+    flex-shrink: 0;
 }
 
 .auto-refresh-indicator i {
@@ -212,8 +249,8 @@ body {
     border: 1.5px solid #3670b3;
     color: #d4e6ff;
     font-weight: 600;
-    font-size: 0.8rem; /* Texto más pequeño */
-    padding: 0.5rem 1.2rem; /* Padding reducido */
+    font-size: 0.8rem;
+    padding: 0.5rem 1.2rem;
     border-radius: 60px;
     display: inline-flex;
     align-items: center;
@@ -221,8 +258,9 @@ body {
     cursor: pointer;
     transition: 0.2s;
     margin-top: 1rem;
-    width: 100%; /* Ocupa todo el ancho en móviles */
+    width: 100%;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .boton-actualizar:hover {
@@ -232,13 +270,19 @@ body {
     box-shadow: 0 0 15px #1f6dc0;
 }
 
-/* ===== CALCULADORA ===== */
+/* ===== CALCULADORA - ESTA SECCIÓN SERÁ FLEXIBLE Y CRECERÁ ===== */
 .calculadora-section {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     background: #0f1a2d;
-    border-radius: 1.5rem; /* Bordes más pequeños */
-    padding: 1.2rem 1rem; /* Padding reducido */
+    border-radius: 1.5rem;
+    padding: 1.2rem 1rem;
     border: 1px solid #2b4a70;
+    /* Permitimos que esta sección crezca para ocupar el espacio vertical restante */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Aseguramos que no se desborde */
+    min-height: 0; /* Importante para que el flex-grow funcione bien con contenido interno */
 }
 
 .calculadora-header {
@@ -247,9 +291,10 @@ body {
     gap: 0.6rem;
     color: #c1d9ff;
     font-weight: 600;
-    font-size: 1rem; /* Reducido */
+    font-size: 1rem;
     margin-bottom: 1.2rem;
     flex-wrap: wrap;
+    flex-shrink: 0;
 }
 
 .calculadora-header i {
@@ -265,18 +310,19 @@ body {
     opacity: 0.7;
 }
 
-/* ===== GRUPOS DE INPUT ===== */
+/* ===== GRUPOS DE INPUT - QUE SE ADAPTEN ===== */
 .conv-input-group {
     display: flex;
     align-items: center;
     gap: 0.6rem;
     flex-wrap: wrap;
     margin-bottom: 0.8rem;
+    flex-shrink: 0;
 }
 
 .input-wrapper {
     flex: 1;
-    min-width: 140px; /* Reducido para móviles */
+    min-width: 140px;
     position: relative;
 }
 
@@ -286,7 +332,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     color: #8ba9db;
-    font-size: 0.9rem; /* Icono más pequeño */
+    font-size: 0.9rem;
 }
 
 .input-wrapper input {
@@ -294,9 +340,9 @@ body {
     background: #061020;
     border: 1px solid #274568;
     color: white;
-    font-size: 1.1rem; /* Texto más pequeño */
+    font-size: 1.1rem;
     font-weight: 600;
-    padding: 0.8rem 0.8rem 0.8rem 2.8rem; /* Padding ajustado */
+    padding: 0.8rem 0.8rem 0.8rem 2.8rem;
     border-radius: 40px;
     outline: none;
     transition: all 0.2s;
@@ -314,11 +360,11 @@ body {
 }
 
 .currency-symbol {
-    font-size: 1.1rem; /* Reducido */
+    font-size: 1.1rem;
     font-weight: 700;
     color: #e0efff;
     background: #1e3452;
-    padding: 0.4rem 1rem; /* Padding reducido */
+    padding: 0.4rem 1rem;
     border-radius: 40px;
     border: 1px solid #355f8f;
     white-space: nowrap;
@@ -326,7 +372,7 @@ body {
 
 .swap-icon {
     color: #457bca;
-    font-size: 1.2rem; /* Icono más pequeño */
+    font-size: 1.2rem;
     margin: 0 0.1rem;
     cursor: default;
     background: #0f1e33;
@@ -337,11 +383,11 @@ body {
     justify-content: center;
 }
 
-/* ===== RESULTADO ===== */
+/* ===== RESULTADO - PUEDE CRECER SI ES NECESARIO ===== */
 .resultado-bs {
     background: #0e1a28;
     border-radius: 50px;
-    padding: 0.6rem 1.2rem; /* Padding reducido */
+    padding: 0.8rem 1.2rem; /* Un poco más de padding vertical */
     margin-top: 1rem;
     display: flex;
     align-items: center;
@@ -349,6 +395,7 @@ body {
     border: 1px solid #24548b;
     flex-wrap: wrap;
     gap: 0.5rem;
+    flex-shrink: 0;
 }
 
 .resultado-bs span:first-child {
@@ -357,11 +404,11 @@ body {
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 0.85rem; /* Texto más pequeño */
+    font-size: 0.85rem;
 }
 
 .monto-final {
-    font-size: 1.6rem; /* Reducido para móviles */
+    font-size: 1.8rem; /* Un poco más grande para destacar */
     font-weight: 700;
     color: white;
     word-break: break-word;
@@ -382,9 +429,10 @@ body {
     align-items: center;
     margin-top: 1rem;
     color: #5675a3;
-    font-size: 0.7rem; /* Texto más pequeño */
+    font-size: 0.7rem;
     flex-wrap: wrap;
     gap: 0.5rem;
+    flex-shrink: 0; /* Evita que se encoja */
 }
 
 .footnote a {
@@ -394,17 +442,12 @@ body {
     padding: 0.2rem 0;
 }
 
-/* ===== MEDIA QUERIES ESPECÍFICAS PARA MÓVILES ===== */
+/* ===== MEDIA QUERIES ESPECÍFICAS PARA MÓVILES (ahora son ajustes finos) ===== */
 
 /* Móviles pequeños (hasta 360px) */
 @media screen and (max-width: 360px) {
-    body {
-        padding: 0.5rem;
-    }
-    
     .glass-card {
         padding: 1rem 0.8rem;
-        border-radius: 1.5rem;
     }
     
     .title-section h1 {
@@ -433,7 +476,7 @@ body {
     }
     
     .monto-final {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
     
     .badge-venezuela span {
@@ -466,12 +509,7 @@ body {
 
 /* Tablets pequeñas (481px - 600px) */
 @media screen and (min-width: 481px) and (max-width: 600px) {
-    body {
-        padding: 1rem;
-    }
-    
     .glass-card {
-        max-width: 450px;
         padding: 1.8rem 1.5rem;
     }
     
@@ -480,14 +518,9 @@ body {
     }
 }
 
-/* Tablets (601px - 768px) */
-@media screen and (min-width: 601px) and (max-width: 768px) {
-    body {
-        padding: 1.5rem;
-    }
-    
+/* Tablets (601px - 767px) */
+@media screen and (min-width: 601px) and (max-width: 767px) {
     .glass-card {
-        max-width: 520px;
         padding: 2rem 1.8rem;
     }
     
@@ -497,21 +530,23 @@ body {
 }
 
 /* ===== ORIENTACIÓN HORIZONTAL EN MÓVILES ===== */
-@media screen and (max-height: 500px) and (orientation: landscape) {
-    body {
-        padding: 0.5rem;
-        align-items: flex-start;
-        min-height: auto;
-    }
-    
+@media screen and (max-height: 550px) and (orientation: landscape) {
     .glass-card {
-        margin: 0.5rem auto;
-        padding: 1rem;
+        padding: 0.8rem 1rem;
+        min-height: 100vh; /* Seguimos ocupando todo el alto */
     }
     
+    .badge-venezuela {
+        margin-bottom: 0.5rem;
+    }
+
+    .title-section {
+        margin-bottom: 0.5rem;
+    }
+
     .tasa-en-vivo {
-        padding: 1rem;
-        margin: 0.5rem 0 1rem 0;
+        padding: 0.8rem 1rem;
+        margin: 0.5rem 0 0.8rem 0;
     }
     
     .dolar-principal {
@@ -524,38 +559,31 @@ body {
     }
     
     .calculadora-section {
-        margin-top: 1rem;
-        padding: 1rem;
+        margin-top: 0.8rem;
+        padding: 0.8rem 1rem;
+        flex-grow: 1; /* Sigue creciendo si hay espacio */
     }
-    
-    .conv-input-group {
-        margin-bottom: 0.5rem;
-    }
-    
-    .badge-venezuela {
-        margin-bottom: 0.8rem;
-    }
-}
 
-/* ===== PANTALLAS MUY GRANDES ===== */
-@media screen and (min-width: 1200px) {
-    body {
-        padding: 2rem;
+    .conv-input-group {
+        margin-bottom: 0.3rem;
     }
-    
-    .glass-card {
-        max-width: 550px;
-        padding: 2.5rem 2.2rem;
+
+    .resultado-bs {
+        margin-top: 0.5rem;
+        padding: 0.4rem 1rem;
     }
-    
-    .valor-grande {
-        font-size: 4rem;
+
+    .monto-final {
+        font-size: 1.5rem;
+    }
+
+    .footnote {
+        margin-top: 0.5rem;
     }
 }
 
 /* ===== TOUCH OPTIMIZATIONS ===== */
 @media (hover: none) and (pointer: coarse) {
-    /* Optimizaciones para pantallas táctiles */
     .boton-actualizar,
     .footnote a,
     .badge-venezuela span {
@@ -569,13 +597,12 @@ body {
     
     input,
     button {
-        font-size: 16px !important; /* Evita zoom automático en iOS */
+        font-size: 16px !important;
     }
 }
 
-/* ===== DARK MODE SOPORTE (opcional) ===== */
+/* ===== DARK MODE SOPORTE ===== */
 @media (prefers-color-scheme: dark) {
-    /* Ya estamos en dark mode, pero aseguramos consistencia */
     body {
         background: radial-gradient(circle at 10% 30%, #0b1a3a, #0a0f1f 90%);
     }
